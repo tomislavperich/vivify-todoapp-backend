@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +10,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+
+    /**
+     * Get tasks for logged in user
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
     /**
      * The attributes that are mass assignable.
