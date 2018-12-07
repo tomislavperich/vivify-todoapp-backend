@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->boolean('is_checked')->default(false);
             $table->string('name', 64)->default('New task');
             $table->string('desc', 255)->nullable();
+            $table->string('priority', 6)->default('medium');
             $table->softDeletes();
             $table->timestamps();
         });

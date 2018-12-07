@@ -47,5 +47,5 @@ Route::group([
     Route::put('delete/{id}', 'TaskController@destroy');
 
     // Edit task
-    Route::put('edit/{id}', 'TaskController@edit');
+    Route::put('edit/{id}', 'TaskController@update');
 });

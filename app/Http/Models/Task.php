@@ -27,7 +27,7 @@ class Task extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'desc', 'user_id', 'is_checked',
+        'name', 'desc', 'priority', 'user_id', 'is_checked',
     ];
 
     protected $casts = [

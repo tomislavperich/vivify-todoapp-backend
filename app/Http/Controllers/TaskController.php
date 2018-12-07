@@ -62,31 +62,21 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, Task $id)
-    {
-        $id->update([
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ]);
-
-        return response()->json($id);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $id)
     {
-        //
+        $id->update([
+            'name' => $request->name,
+            'desc' => $request->desc,
+            'priority' => $request->priority
+        ]);
+
+        return response()->json($id);
     }
 
     /**
