@@ -34,9 +34,18 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'task'
 ], function ($router) {
+    // Return all tasks
     Route::get('/', 'TaskController@index');
-    Route::get('show', 'TaskController@show');
+
+    // Return single task
+    Route::get('/{id}', 'TaskController@show');
+
+    // Create new task
     Route::post('new', 'TaskController@create');
-    Route::put('delete/{task}', 'TaskController@destroy');
-    Route::put('edit/{task}', 'TaskController@edit');
+
+    // Delete task
+    Route::put('delete/{id}', 'TaskController@destroy');
+
+    // Edit task
+    Route::put('edit/{id}', 'TaskController@edit');
 });

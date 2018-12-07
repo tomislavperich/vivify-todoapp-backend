@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 use App\Models\Task;
 use App\Models\User;
 use Auth;
@@ -29,11 +30,13 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         $user_id = auth()->user()->id;
-        $task = new Task;
-        $task->name = $request->name;
-        $task->user_id = $user_id;
-        $task->save();
-        return response()->json(['message' => 'success']);
+
+        $task = Task::create([
+            'name' => $request->name,
+            'desc' => $request->desc,
+            'user_id' => $user_id,
+        ]);
+        return response()->json($task);
     }
 
     /**
@@ -42,7 +45,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Task $task)
     {
         //
     }
@@ -53,9 +56,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Task $id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -64,13 +67,14 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Task $task)
+    public function edit(Request $request, Task $id)
     {
-        $task->update([
-            'name' => $request->name
+        $id->update([
+            'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
-        return response()->json($task);
+        return response()->json($id);
     }
 
     /**
@@ -91,9 +95,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Task $id)
     {
-        $task->delete();
-        return response()->json(['message' => 'success']);
+        $id->delete();
+        return Response::HTTP_OK;
     }
 }

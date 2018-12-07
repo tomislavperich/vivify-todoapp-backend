@@ -17,7 +17,8 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->boolean('is_checked')->default(false);
-            $table->string('name', 255)->default('New task');
+            $table->string('name', 64)->default('New task');
+            $table->string('desc', 255)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
