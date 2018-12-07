@@ -11,6 +11,6 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
-        $task = factory(App\Task::class, 30)->create();
+        $task = factory(App\Models\Task::class, 30)->create();
     }
 }
