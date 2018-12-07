@@ -6,10 +6,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * Get user that belongs to task
@@ -29,11 +31,9 @@ class Task extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
+    protected $dates = ['deleted_at'];
 }
