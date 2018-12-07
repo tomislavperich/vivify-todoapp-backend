@@ -30,6 +30,10 @@ class Task extends Model
         'name', 'user_id', 'is_checked',
     ];
 
+    protected $casts = [
+        'is_checked' => 'boolean'
+    ];
+
     /**
      * The attributes that should be mutated to dates.
      *

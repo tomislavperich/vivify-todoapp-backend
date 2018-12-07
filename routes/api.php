@@ -38,4 +38,5 @@ Route::group([
     Route::get('show', 'TaskController@show');
     Route::post('new', 'TaskController@create');
     Route::put('delete/{task}', 'TaskController@destroy');
+    Route::put('edit/{task}', 'TaskController@edit');
 });

@@ -64,9 +64,13 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, Task $task)
     {
-        //
+        $task->update([
+            'name' => $request->name
+        ]);
+
+        return response()->json($task);
     }
 
     /**
