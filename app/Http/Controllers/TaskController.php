@@ -28,11 +28,12 @@ class TaskController extends Controller
      */
     public function create(Request $request)
     {
+        $user_id = auth()->user()->id;
         $task = new Task;
         $task->name = $request->name;
-        $task->user_id = $request->user_id;
+        $task->user_id = $user_id;
         $task->save();
-        return 'Success';
+        return response()->json(['message' => 'success']);
     }
 
     /**
