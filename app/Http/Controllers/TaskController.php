@@ -31,9 +31,16 @@ class TaskController extends Controller
     {
         $user_id = auth()->user()->id;
 
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'priority' => 'integer|min:0|max:3'
+        ]);
+
         $task = Task::create([
             'name' => $request->name,
             'desc' => $request->desc,
+            'priority' => $request->priority,
             'user_id' => $user_id,
         ]);
         return response()->json($task);
@@ -70,6 +77,12 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'desc' => 'max:255',
+            'priority' => 'integer|min:0|max:3'
+        ]);
+
         $id->update([
             'name' => $request->name,
             'desc' => $request->desc,
