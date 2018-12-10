@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// User routes
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -26,4 +27,25 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
+});
+
+// Task routes
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'task'
+], function ($router) {
+    // Return all tasks
+    Route::get('/', 'TaskController@index');
+
+    // Return single task
+    Route::get('/{id}', 'TaskController@show');
+
+    // Create new task
+    Route::post('/', 'TaskController@create');
+
+    // Delete task
+    Route::put('delete/{id}', 'TaskController@destroy');
+
+    // Edit task
+    Route::put('edit/{id}', 'TaskController@update');
 });
