@@ -41,7 +41,7 @@ Route::group([
     Route::get('/{id}', 'TaskController@show');
 
     // Create new task
-    Route::post('new', 'TaskController@create');
+    Route::post('/', 'TaskController@create');
 
     // Delete task
     Route::put('delete/{id}', 'TaskController@destroy');
