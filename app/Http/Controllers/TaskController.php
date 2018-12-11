@@ -86,7 +86,8 @@ class TaskController extends Controller
         $id->update([
             'name' => $request->name,
             'desc' => $request->desc,
-            'priority' => $request->priority
+            'priority' => $request->priority,
+            'is_checked' => $request->is_checked
         ]);
 
         return response()->json($id);
